@@ -60,5 +60,5 @@ nunit-*.xml
 .vscode/
 .idea/
 
-*.DotSettings.user
-*.Development.json
+ExchangeRate.sln.DotSettings.user
+appsettings.Development.json

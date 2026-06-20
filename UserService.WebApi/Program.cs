@@ -1,20 +1,19 @@
-using System.Reflection;
-using Database.Core;
-using Api.Common;
-using Api.Common.Application.Services;
-using Api.Common.Domain.Interfaces;
-using Api.Common.Presentation.Exceptions;
-using UserService.WebApi.Domain.Interfaces;
-using UserService.WebApi.Infrastructure;
+using Shared.Infrastructure;
+using Shared.Presentation;
+using Shared.Presentation.Exceptions;
+using UserService.Application.Interfaces;
+using UserService.Application.Services;
+using UserService.Infrastructure;
+using UserService.Infrastructure.Persistence.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
     .AddJwtAuthentication(builder.Configuration)
-    .AddMediatR(config => config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()))
     .AddAuthorization()
-    .AddExchangeRateData(builder.Configuration)
-    .AddSingleton<IJwtTokenService, JwtTokenService>()
+    .AddMediatR(config => config.RegisterServicesFromAssembly(typeof(UserService.Application.DTO.RegisterRequest).Assembly))
+    .AddIdentityData(builder.Configuration)
+    .AddSingleton<IJwtService, JwtService>()
     .AddSingleton<IUserRepository, UserRepository>()
     .AddEndpointsApiExplorer()
     .AddSwaggerGen()

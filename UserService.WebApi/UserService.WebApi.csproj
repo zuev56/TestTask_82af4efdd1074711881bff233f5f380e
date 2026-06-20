@@ -7,7 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Api.Common\Api.Common.csproj" />
+      <ProjectReference Include="..\Shared.Presentation\Shared.Presentation.csproj" />
+      <ProjectReference Include="..\UserService.Infrastructure\UserService.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

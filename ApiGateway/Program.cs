@@ -17,7 +17,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwaggerUI(options =>
     {
-        options.SwaggerEndpoint("/currency/swagger/v1/swagger.json", "Currency API");
+        options.SwaggerEndpoint("/finance/swagger/v1/swagger.json", "Finance API");
         options.SwaggerEndpoint("/user/swagger/v1/swagger.json", "User API");
 
         options.EnableTryItOutByDefault();

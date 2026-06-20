@@ -12,7 +12,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Database.Core\Database.Core.csproj" />
+      <ProjectReference Include="..\FinanceService.Infrastructure\FinanceService.Infrastructure.csproj" />
+      <ProjectReference Include="..\UserService.Infrastructure\UserService.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

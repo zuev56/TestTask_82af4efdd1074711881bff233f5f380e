@@ -1,0 +1,22 @@
+name: "zuev-test"
+
+# TODO: Сделать для сервисов докерфайлы и добавить инструкции запуска сюда
+
+services:
+  redis:
+    image: redis:7.2-alpine
+    container_name: zuev-redis
+    restart: unless-stopped
+    ports:
+      - ${REDIS_PORT:-6379}:6379
+    volumes:
+      - redis-data:/data
+    command: redis-server --requirepass ${REDIS_PASSWORD}
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  redis-data:

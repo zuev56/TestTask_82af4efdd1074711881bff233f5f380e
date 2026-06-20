@@ -1,15 +1,17 @@
-using Database.Core;
-using Database.Core.DbContexts;
+using FinanceService.Infrastructure;
+using FinanceService.Infrastructure.Persistence.DbContexts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using UserService.Infrastructure;
+using UserService.Infrastructure.Persistence.DbContexts;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddExchangeRateData(builder.Configuration);
-builder.Services.AddJwtData(builder.Configuration);
+builder.Services.AddFinanceData(builder.Configuration);
+builder.Services.AddIdentityData(builder.Configuration);
 
 var app = builder.Build();
 
@@ -22,12 +24,12 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapPost("/migrations/apply",
-        async ([FromServices] IDbContextFactory<ExchangeRateDbContext> exchangeRateContextFactory,
-            [FromServices] IDbContextFactory<JwtDbContext> jwtContextFactory,
+        async ([FromServices] IDbContextFactory<FinanceDbContext> exchangeRateContextFactory,
+            [FromServices] IDbContextFactory<IdentityDbContext> jwtContextFactory,
             [FromServices] ILogger<Program> logger) =>
         {
             // TODO: Решение такое себе (миграция только в одну сторону, надо добавлять каждый новый контекст).
-            //       Для большей гибкости можно передеать на выполнение команд через CLI.
+            //       Для большей гибкости можно переделать на выполнение команд через CLI.
             try
             {
                 await using var exchangeRateContext = await exchangeRateContextFactory.CreateDbContextAsync();

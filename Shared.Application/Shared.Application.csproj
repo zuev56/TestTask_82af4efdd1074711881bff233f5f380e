@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="MediatR" Version="14.1.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.27" />
+        <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="8.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.28" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Shared.Domain\Shared.Domain.csproj" />
+    </ItemGroup>
+
+</Project>
